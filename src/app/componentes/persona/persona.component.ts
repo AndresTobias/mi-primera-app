@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Persona } from 'src/models/Persona';
 @Component({
   selector: 'app-persona',
@@ -7,11 +7,21 @@ import { Persona } from 'src/models/Persona';
 })
 export class PersonaComponent implements OnInit {
 @Input() persona:Persona=new Persona()
+@Output() deletePersona:EventEmitter<Persona> = new EventEmitter()
   
 constructor() { }
 
   
 ngOnInit(): void {
   }
+
+festejo(persona:Persona) {
+    persona.cumplirAnios()
+  }
+
+borrarPersona(personaParaBorrar:Persona) {
+  this.deletePersona.emit(personaParaBorrar)
+}
+
 
 }
